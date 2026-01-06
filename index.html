@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LUGHWORKS // CRYPTO_OS</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        crypto: '#00ff41',
+                        void: '#05080a',
+                    }
+                }
+            }
+        }
+    </script>
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&family=JetBrains+Mono&display=swap');
+
+        body {
+            background-color: #05080a;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .blueprint-grid {
+            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .cyber-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .cyber-panel:hover {
+            border-color: rgba(0, 255, 65, 0.4);
+            background: rgba(0, 255, 65, 0.03);
+            transform: translateY(-2px);
+        }
+    </style>
+    </head>
+
+    <body class="blueprint-grid min-h-screen">
+
+        <div id="boot-loader"
+            class="fixed inset-0 bg-void z-[1000] flex flex-col items-center justify-center p-8 transition-opacity duration-1000">
+            <div class="w-full max-w-md">
+                <div class="flex justify-between items-end mb-4 font-mono">
+                    <div
+                        class="text-[10px] text-crypto animate-pulse uppercase">Initializing_Core_OS...</div>
+                    <div id="perc-text"
+                        class="text-2xl font-black italic text-crypto">0.00%</div>
+                </div>
+
+                <div
+                    class="h-32 border border-crypto/20 bg-crypto/5 relative overflow-hidden mb-4">
+                    <svg class="w-full h-full" preserveAspectRatio="none">
+                        <polyline id="chart-line" fill="none" stroke="#00ff41"
+                            stroke-width="1" points="0,100" />
+                        <circle id="chart-head" r="3" fill="#00ff41" />
+                    </svg>
+                </div>
+
+                <div id="status-text"
+                    class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-center italic">
+                    Connecting_to_Nodes...
+                </div>
+            </div>
+        </div>
+
+        <header
+            class="p-8 border-b border-crypto/20 flex justify-between items-center sticky top-0 bg-void/80 backdrop-blur-md z-50">
+            <div class="flex items-center gap-4">
+                <div
+                    class="w-10 h-10 bg-crypto flex items-center justify-center rotate-45">
+                    <div class="w-6 h-6 border-2 border-void -rotate-45"></div>
+                </div>
+                <div>
+                    <h1
+                        class="text-xl font-bold tracking-tighter uppercase italic">LUGHWORKS
+                        // <span
+                            class="text-crypto">CRYPTO_OS</span></h1>
+                    <p
+                        class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
+                        Decentralized_Education_Protocol_v2.0</p>
+                </div>
+            </div>
+            <div
+                class="hidden md:flex items-center gap-8 font-mono text-[10px] uppercase tracking-widest">
+                <div class="flex items-center gap-2">
+                    <span
+                        class="w-2 h-2 bg-crypto rounded-full animate-pulse"></span>
+                    <span id="gas-tracker">GAS: 24 GWEI</span>
+                </div>
+                <div id="block-height">BLOCK: 18923412</div>
+            </div>
+        </header>
+
+        <div id="volatility-alert"
+            class="bg-crypto/10 border-y border-crypto/30 py-2 hidden overflow-hidden">
+            <div
+                class="whitespace-nowrap flex gap-12 font-mono text-[10px] text-crypto uppercase italic tracking-tighter">
+                <span id="alert-message">NETWORK_CONGESTION: EXPECT HIGH
+                    SLIPPAGE</span>
+            </div>
+        </div>
+
+        <main class="max-w-7xl mx-auto px-8 py-20">
+            <div class="mb-20">
+                <h2
+                    class="text-5xl font-black uppercase italic tracking-tighter leading-none mb-4">THE_LEDGER<br><span
+                        class="text-crypto">ARCHIVE</span></h2>
+                <p
+                    class="max-w-xl text-xs text-zinc-400 font-mono uppercase leading-relaxed tracking-wider">Accessing
+                    educational nodes for blockchain, DeFi, and on-chain
+                    intelligence. Select a module to initialize data
+                    transfer.</p>
+            </div>
+
+            <div id="module-grid"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                <div onclick="window.openModule('blockchain')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">01 //
+                        ARCHITECTURE</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Blockchain 101</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Distributed
+                        ledgers,
+                        proof-of-work vs stake, and the anatomy of a block.</p>
+                </div>
+
+                <div onclick="window.openModule('onchain')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">02 //
+                        INTELLIGENCE</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        On-Chain Data</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Tracking
+                        whale movements,
+                        exchange flows, and real-time network health.</p>
+                </div>
+
+                <div onclick="window.openModule('defi')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">03 //
+                        PROTOCOLS</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">DeFi
+                        Mastery</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Lending
+                        markets, AMMs, and the
+                        plumbing of decentralized finance.</p>
+                </div>
+
+                <div onclick="window.openModule('security')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">04 //
+                        SURVIVAL</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Cyber Security</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Hardening
+                        your stack against
+                        phishing, exploits, and social engineering.</p>
+                </div>
+
+                <div onclick="window.openModule('tokenomics')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">05 //
+                        ECONOMICS</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Tokenomics</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Supply
+                        curves, emission
+                        schedules, and the math of value capture.</p>
+                </div>
+
+                <div onclick="window.openModule('wallets')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">06 //
+                        CUSTODY</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Wallet Config</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Hot
+                        vs cold storage, multi-sigs,
+                        and seed phrase operational security.</p>
+                </div>
+
+                <div onclick="window.openModule('mining')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">07 //
+                        INFRA</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Mining & Consensus</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Converting
+                        physical energy into
+                        digital security via SHA-256 and PoS.</p>
+                </div>
+
+                <div onclick="window.openModule('governance')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">08 //
+                        SOCIAL_LAYER</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Governance</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Decentralized
+                        decision making,
+                        DAOs, and protocol proposal lifecycles.</p>
+                </div>
+
+                <div onclick="window.openModule('nfts')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">09 //
+                        OWNERSHIP</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">NFTs
+                        & Assets</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Unique
+                        digital property,
+                        metadata architecture, and smart contract standards.</p>
+                </div>
+
+                <div onclick="window.openModule('l2scaling')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">10 //
+                        EFFICIENCY</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">L2
+                        Scaling</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Optimistic
+                        and ZK-Rollups
+                        solving the blockchain modular trilemma.</p>
+                </div>
+
+                <div onclick="window.openModule('stablecoins')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all">
+                    <span class="text-crypto font-mono text-[10px] italic">11 //
+                        LIQUIDITY</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-crypto transition-colors uppercase italic">
+                        Stablecoins</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Fiat-backed,
+                        CDP, and
+                        algorithmic value stability mechanisms.</p>
+                </div>
+
+                <div onclick="window.openModule('risk')"
+                    class="cyber-panel p-8 cursor-pointer group transition-all border-red-500/20 hover:border-red-500/50 bg-red-500/5">
+                    <span class="text-red-500 font-mono text-[10px] italic">12
+                        // SURVIVAL</span>
+                    <h3
+                        class="text-2xl font-black mt-4 group-hover:text-red-500 transition-colors uppercase italic text-red-500/80">
+                        Risk Management</h3>
+                    <p
+                        class="text-[10px] text-zinc-500 mt-4 leading-relaxed uppercase">Protecting
+                        capital through
+                        position sizing and statistical safety.</p>
+                </div>
+
+            </main>
+
+            <div id="module-overlay" class="hidden"></div>
+
+            <script src="script.js"></script>
+        </body>
+
+    </html>
